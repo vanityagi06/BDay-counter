@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Countdown</title>
+  <style>
+    body {
+      text-align: center; 
+      background-color: rgb(240, 180, 190);
+      color: rgb(67, 0, 0);
+      margin-top: 100px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    input{
+      margin: 10px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px;
+    }
+    #btn{
+        background-color: rgb(176, 116, 116);
+        border-radius: 10px;
+        color: white;
+    }
+    #d {
+      background-color: rgb(255, 220, 230);
+      border-radius: 15px;
+      padding: 30px;
+      width: 350px;
+      margin: auto;
+      box-shadow: 0 0 15px black;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="d">
+    <h1>How Far Is Your Birthday?</h1>
+
+    <input type="number" id="birthday" placeholder="Day" min="1" max="31">
+    <input type="number" id="birthmonth" placeholder="Month" min="1" max="12"><br>
+    <button onclick="checkbirthday()" id="btn">Check</button>
+
+    <p id="p"></p>
+  </div>
+
+  <script>
+    function checkbirthday() {
+      let day=document.getElementById("birthday").value;
+      let month=document.getElementById("birthmonth").value;
+      let today=new Date();
+      let currentYear=today.getFullYear();
+      let birthday=new Date(currentYear,month-1,day);
+
+               if (birthday<today)
+               {
+        birthday.setFullYear(currentYear+1);
+      }
+
+      let diffTime=birthday-today;
+      let diffDays=Math.ceil(diffTime/(1000*60*60*24));
+
+         document.getElementById("p").innerText=`Your birthday is in ${diffDays} days!`;
+    }
+  </script>
+
+</body>
+</html>
